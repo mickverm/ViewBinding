@@ -93,22 +93,24 @@ fun <V : View> RecyclerView.ViewHolder.bindOptionalViews(vararg ids: Int): ReadO
     optional(ids, viewFinder)
 
 
-private val View.viewFinder: View.(Int) -> View?
+private typealias Finder<T> = T.(Int) -> View?
+
+private val View.viewFinder: Finder<View>
     get() = { findViewById(it) }
 
-private val Activity.viewFinder: Activity.(Int) -> View?
+private val Activity.viewFinder: Finder<Activity>
     get() = { findViewById(it) }
 
-private val Dialog.viewFinder: Dialog.(Int) -> View?
+private val Dialog.viewFinder: Finder<Dialog>
     get() = { findViewById(it) }
 
-private val DialogFragment.viewFinder: DialogFragment.(Int) -> View?
+private val DialogFragment.viewFinder: Finder<DialogFragment>
     get() = { dialog?.findViewById(it) ?: view?.findViewById(it) }
 
-private val Fragment.viewFinder: Fragment.(Int) -> View?
+private val Fragment.viewFinder: Finder<Fragment>
     get() = { view!!.findViewById(it) }
 
-private val RecyclerView.ViewHolder.viewFinder: RecyclerView.ViewHolder.(Int) -> View?
+private val RecyclerView.ViewHolder.viewFinder: Finder<RecyclerView.ViewHolder>
     get() = { itemView.findViewById(it) }
 
 
@@ -117,36 +119,36 @@ private fun viewNotFound(id: Int, desc: KProperty<*>): Nothing =
 
 
 @Suppress("UNCHECKED_CAST")
-private fun <T, V : View> required(id: Int, finder: T.(Int) -> View?) =
+private fun <T, V : View> required(id: Int, finder: Finder<T>) =
     Lazy { t: T, desc -> t.finder(id) as V? ?: viewNotFound(id, desc) }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T, V : View> required(ids: IntArray, finder: T.(Int) -> View?) =
+private fun <T, V : View> required(ids: IntArray, finder: Finder<T>) =
     Lazy { t: T, desc -> ids.map { t.finder(it) as V? ?: viewNotFound(it, desc) } }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T, V : View> optional(id: Int, finder: T.(Int) -> View?) =
+private fun <T, V : View> optional(id: Int, finder: Finder<T>) =
     Lazy { t: T, _ -> t.finder(id) as V? }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T, V : View> optional(ids: IntArray, finder: T.(Int) -> View?) =
+private fun <T, V : View> optional(ids: IntArray, finder: Finder<T>) =
     Lazy { t: T, _ -> ids.map { t.finder(it) as V? }.filterNotNull() }
 
 
 @Suppress("UNCHECKED_CAST")
-private fun <V : View> required(fragment: Fragment, id: Int, finder: Fragment.(Int) -> View?) =
+private fun <V : View> required(fragment: Fragment, id: Int, finder: Finder<Fragment>) =
     LazyFragment(fragment) { t: Fragment, desc -> t.finder(id) as V? ?: viewNotFound(id, desc) }
 
 @Suppress("UNCHECKED_CAST")
-private fun <V : View> required(fragment: Fragment, ids: IntArray, finder: Fragment.(Int) -> View?) =
+private fun <V : View> required(fragment: Fragment, ids: IntArray, finder: Finder<Fragment>) =
     LazyFragment(fragment) { t: Fragment, desc -> ids.map { t.finder(it) as V? ?: viewNotFound(it, desc) } }
 
 @Suppress("UNCHECKED_CAST")
-private fun <V : View> optional(fragment: Fragment, id: Int, finder: Fragment.(Int) -> View?) =
+private fun <V : View> optional(fragment: Fragment, id: Int, finder: Finder<Fragment>) =
     LazyFragment(fragment) { t: Fragment, _ -> t.finder(id) as V? }
 
 @Suppress("UNCHECKED_CAST")
-private fun <V : View> optional(fragment: Fragment, ids: IntArray, finder: Fragment.(Int) -> View?) =
+private fun <V : View> optional(fragment: Fragment, ids: IntArray, finder: Finder<Fragment>) =
     LazyFragment(fragment) { t: Fragment, _ -> ids.map { t.finder(it) as V? }.filterNotNull() }
 
 
