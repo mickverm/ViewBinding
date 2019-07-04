@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'Viewbinding'
+
+    publishedGroupId = 'be.mickverm.viewbinding'
+    libraryName = 'Viewbinding'
+    artifact = 'viewbinding'
+
+    libraryDescription = 'ButterKnife-esque view binding for Kotlin based on KotterKnife.'
+
+    siteUrl = 'https://github.com/mickverm/Viewbinding'
+    gitUrl = 'https://github.com/mickverm/Viewbinding.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'Mickverm'
+    developerName = 'Michiel Vermeersch'
+    developerEmail = 'mick.vermeersch@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
