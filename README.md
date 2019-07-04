@@ -27,7 +27,7 @@ Download
 
 Gradle:
 ````groovy
-implementation 'be.mickverm.viewbinding:viewbinding:1.0.0'
+implementation 'be.mickverm.viewbinding:viewbinding:1.0.1'
 ````
 
 or Maven:
@@ -35,7 +35,7 @@ or Maven:
 <dependency>
   <groupId>be.mickverm.viewbinding</groupId>
   <artifactId>viewbinding</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ````
