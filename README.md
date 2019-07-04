@@ -6,17 +6,17 @@ Viewbinding
 
 ```kotlin
 public class PersonView(context: Context, attrs: AttributeSet?) : LinearLayout(context, attrs){
-	val firstName: TextView by bindView(R.id.tv_first_name)
-	val lastName by bindView<TextView>(R.id.tv_last_name)
-	
-	// Optional binding
-	val middleName: TextView? by bindOptionalView(R.id.tv_middle_name)
-	
-	// List binding
-	val nameViews: List<TextView> by bindViews(R.id.tv_first_name, R.id.tv_last_name)
-	
-	// List binding with optional items being omitted
-	val nameViews: List<TextView> by bindOptionalViews(R.id.tv_first_name, R.id.tv_middle_name, R.id.tv_last_name)
+    val firstName: TextView by bindView(R.id.tv_first_name)
+    val lastName by bindView<TextView>(R.id.tv_last_name)
+
+    // Optional binding
+    val middleName: TextView? by bindOptionalView(R.id.tv_middle_name)
+
+    // List binding
+    val nameViews: List<TextView> by bindViews(R.id.tv_first_name, R.id.tv_last_name)
+
+    // List binding with optional items being omitted
+    val nameViews: List<TextView> by bindOptionalViews(R.id.tv_first_name, R.id.tv_middle_name, R.id.tv_last_name)
 }
 ```
 
