@@ -29,7 +29,7 @@ Download
 --------
 
 ````groovy
-implementation 'be.mickverm.viewbinding:viewbinding:1.0.1'
+implementation 'be.mickverm.viewbinding:viewbinding:1.0.2'
 ````
 
 License
