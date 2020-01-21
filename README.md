@@ -1,5 +1,8 @@
 Viewbinding
 ===========
+
+**Attention**: Please consider switching to [view binding][3] in the coming months.
+
 [ ![Download](https://api.bintray.com/packages/mickverm/maven/Viewbinding/images/download.svg) ](https://bintray.com/mickverm/maven/Viewbinding/_latestVersion)
 
 [ButterKnife][1]-esque view binding for Kotlin based on [KotterKnife][2].
@@ -32,7 +35,7 @@ implementation 'be.mickverm.viewbinding:viewbinding:1.0.1'
 License
 -------
 
-    Copyright 2019 Michiel Vermeersch
+    Copyright 2020 Michiel Vermeersch
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -49,3 +52,4 @@ License
 
 [1]: https://jakewharton.github.io/butterknife
 [2]: https://github.com/JakeWharton/kotterknife
+[3]: https://developer.android.com/topic/libraries/view-binding
